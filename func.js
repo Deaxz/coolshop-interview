@@ -1,3 +1,4 @@
+
 function show_pretty_price(value) {
 
   // Preliminary rounding to two decimals.
@@ -20,23 +21,17 @@ function show_pretty_price(value) {
   let decimal = parseInt(tempDeci.join(''));
 
   // If-else chain determining the rounding.
-  if (decimal > 00 && 50 >= decimal) {
+  if (decimal > 0 && 50 >= decimal) {
    
     // Round to .50
     int++;
     return Number(int).toFixed(0).valueOf() - 0.50;
 
-    /* Test:
-    return 1;*/
-
   } else if (decimal > 50 && 95 >= decimal) {
     
     // Round to .95
     int++;
-    return Number(int).toFixed(0).valueOf() - 0.05;
-
-    /* Test:
-    return 2;*/   
+    return Number(int).toFixed(0).valueOf() - 0.05;  
 
   } else if (decimal > 95) {
     
@@ -45,34 +40,41 @@ function show_pretty_price(value) {
     let temp = Number(int).toFixed(0);
     return Number(temp).toFixed(2).valueOf() - 0.00; 
 
-    /* Test:
-    return 3;*/
-
   }
 
   // The value ends with .00
   return value;
-
-  /* Test:
-  return 0;*/
 }
 
-function distribution_test(value) {
+// Counts occurences of value in array.
+function count(arr) {
+  
+  let b = [], prev = 0;
+  arr.sort();
 
-  /* Test:    
-  let arr = [0,0,0,0];*/
+  for (let i = 0; i < arr.length; i++ ) {
+      
+    if (arr[i] !== prev) {
+      b.push(1);
+    } else {
+      b[b.length-1]++;
+    }
+    prev = arr[i];
+  }
+  return b;
+}
+
+// There are 100 different 2 decimal values.
+exports.distri_test = function (value) {
+  let arr = [];
 
   for (let i = 0; i < 100; i++) {
-    console.log(show_pretty_price(value));
     
-    /* Test:
-    let index = show_pretty_price(value);
-    arr[index]++;*/
-
+    arr.push(show_pretty_price(value));    
     value+= 0.01;
   }
-  /* Test:
-  return arr;*/
-}
+ 
+  let occurences = count(arr);
 
-console.log(distribution_test(99));
+  return occurences;
+}
