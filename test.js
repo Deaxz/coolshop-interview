@@ -11,9 +11,8 @@ test("Testing distribution of outputs", function(assert) {
   result = func.distri_test(0);
   assert.deepEqual(result, [1, 50, 45, 4], "Test: 0. The output array and the expected array are equal.");
   
-  let result1 = func.distri_test(1);
-  console.log("Test 1: " + result1);
-  assert.deepEqual(result1, [1, 50, 45, 4], "Test: 1. The output array and the expected array are equal.");
+  result = func.distri_test(1);
+  assert.deepEqual(result, [1, 50, 45, 4], "Test: 1. The output array and the expected array are equal.");
 
   result = func.distri_test(10);
   assert.deepEqual(result, [1, 50, 45, 4], "Test: 10. The output array and the expected array are equal.");
@@ -37,5 +36,5 @@ test("Testing distribution of outputs", function(assert) {
   assert.deepEqual(result, [1, 50, 45, 4], "Test: 1000000. The output array and the expected array are equal.");
 
   result = func.distri_test(99952347);
-  assert.deepEqual(result, [1, 50, 45, 4], "Test: ###. The output array and the expected array are equal."); 
+  assert.deepEqual(result, [1, 50, 45, 4], "Test: 99952347. The output array and the expected array are equal."); 
 });

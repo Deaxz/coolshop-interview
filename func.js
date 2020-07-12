@@ -1,7 +1,7 @@
 
 function show_pretty_price(value) {
 
-  // Preliminary rounding to two decimals.
+  // Rounding to two decimals.
   let price = Number(value).toFixed(2);
   let arr = price.toString().split('');
 
@@ -35,7 +35,6 @@ function show_pretty_price(value) {
     value++;
     let temp = Number(value).toFixed(0);
     return Number(temp).toFixed(2).valueOf() - 0.00; 
-
   }
 
   // The value ends with .00
@@ -73,5 +72,3 @@ exports.distri_test = function (value) {
   let occurences = count(arr);
   return occurences;
 }
-
-//console.log(this.distri_test(1));
