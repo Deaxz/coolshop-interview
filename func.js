@@ -6,38 +6,34 @@ function show_pretty_price(value) {
   let arr = price.toString().split('');
 
   let tempDeci = [];
-  let tempInt = [];
-  
+
   // Decimals always at the last two indices.
   for (i = arr.length - 2; i < arr.length; i++)
-  tempDeci[i] = arr[i];
+    tempDeci[i] = arr[i];
 
-  // Copying of the int.
-  for (i = 0; i < arr.length - 3; i++)
-    tempInt[i] = arr[i];
-
-  // Parsing of int and decimal part of received value.
-  let int = parseInt(tempInt.join(''));
+  // Parsing of decimal part of received value.
   let decimal = parseInt(tempDeci.join(''));
+
+  value -= decimal / 100;
 
   // If-else chain determining the rounding.
   if (decimal > 0 && 50 >= decimal) {
    
     // Round to .50
-    int++;
-    return Number(int).toFixed(0).valueOf() - 0.50;
+    value++;
+    return Number(value).toFixed(0).valueOf() - 0.50;
 
   } else if (decimal > 50 && 95 >= decimal) {
     
     // Round to .95
-    int++;
-    return Number(int).toFixed(0).valueOf() - 0.05;  
+    value++;
+    return Number(value).toFixed(0).valueOf() - 0.05;  
 
   } else if (decimal > 95) {
     
     // Round to .00
-    int++;
-    let temp = Number(int).toFixed(0);
+    value++;
+    let temp = Number(value).toFixed(0);
     return Number(temp).toFixed(2).valueOf() - 0.00; 
 
   }
@@ -49,7 +45,7 @@ function show_pretty_price(value) {
 // Counts occurences of value in array.
 function count(arr) {
   
-  let b = [], prev = 0;
+  let b = [], prev = -Infinity;
   arr.sort();
 
   for (let i = 0; i < arr.length; i++ ) {
@@ -75,6 +71,7 @@ exports.distri_test = function (value) {
   }
  
   let occurences = count(arr);
-
   return occurences;
 }
+
+//console.log(this.distri_test(1));
