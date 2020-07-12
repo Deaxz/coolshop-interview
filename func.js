@@ -1,4 +1,3 @@
-
 function show_pretty_price(value) {
 
   // Preliminary rounding to two decimals.
@@ -8,7 +7,7 @@ function show_pretty_price(value) {
   let tempDeci = [];
   let tempInt = [];
   
-  // Copying of the decimals.
+  // Decimals always at the last two indices.
   for (i = arr.length - 2; i < arr.length; i++)
   tempDeci[i] = arr[i];
 
@@ -27,11 +26,17 @@ function show_pretty_price(value) {
     int++;
     return Number(int).toFixed(0).valueOf() - 0.50;
 
+    /* Test:
+    return 1;*/
+
   } else if (decimal > 50 && 95 >= decimal) {
     
     // Round to .95
     int++;
     return Number(int).toFixed(0).valueOf() - 0.05;
+
+    /* Test:
+    return 2;*/   
 
   } else if (decimal > 95) {
     
@@ -40,8 +45,34 @@ function show_pretty_price(value) {
     let temp = Number(int).toFixed(0);
     return Number(temp).toFixed(2).valueOf() - 0.00; 
 
+    /* Test:
+    return 3;*/
+
   }
 
   // The value ends with .00
-  return value; 
+  return value;
+
+  /* Test:
+  return 0;*/
 }
+
+function distribution_test(value) {
+
+  /* Test:    
+  let arr = [0,0,0,0];*/
+
+  for (let i = 0; i < 100; i++) {
+    console.log(show_pretty_price(value));
+    
+    /* Test:
+    let index = show_pretty_price(value);
+    arr[index]++;*/
+
+    value+= 0.01;
+  }
+  /* Test:
+  return arr;*/
+}
+
+console.log(distribution_test(99));
